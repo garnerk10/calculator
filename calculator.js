@@ -55,8 +55,12 @@ const selectOperator = button => {
         operator = button.target.textContent;
         lgDisplay.innerText = '';
         smDisplay.innerText = `${operand1} ${button.target.textContent}`;
+    } else if(isOperatorSelected === true && lgDisplay !== ''){
+        operand2 = lgDisplay.textContent;
+        lgDisplay.innerText = operate(operator, operand1, operand2);
+        operator = button.target.textContent;
 
-    };
+    }
 };
 
 numButtons.forEach(button => {
