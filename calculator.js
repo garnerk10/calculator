@@ -8,7 +8,8 @@ const smDisplay = document.getElementById("sm-display");
 const clear = document.getElementById("clear");
 const numButtons = document.querySelectorAll("[data-number]");
 const opButtons = document.querySelectorAll("[data-operator]");
-const equalsButton = document.getElementById("equals")
+const equalsButton = document.getElementById("equals");
+const decPoint = document.getElementById("point");
 
 const add = (num1, num2) => {
     return num1 + num2
@@ -31,16 +32,16 @@ const operate = (operator, operand1, operand2) => {
     let b = Number(operand2);
     switch (operator){
         case '+':
-            return add(a, b);
+            return roundNumber(add(a, b));
         
         case '-':
-            return subtract(a, b);
+            return roundNumber(subtract(a, b));
         
         case 'x':
-            return multiply(a, b);
+            return roundNumber(multiply(a, b));
         
         case '/':
-            return divide(a, b);
+            return roundNumber(divide(a, b));
     };
 };
 
@@ -95,3 +96,13 @@ const clearFunction = () => {
 };
 
 clear.addEventListener('click', clearFunction);
+
+const point = () => {
+    lgDisplay.innerText += "."
+};
+
+decPoint.addEventListener('click', point);
+
+const roundNumber = num => {
+    return Math.round(num * 1000) / 1000;
+}
