@@ -1,0 +1,50 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(181, 236, 255);
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    background-color: mediumspringgreen;
+    border: 1px black solid;
+    height: 60%;
+}
+
+.display {
+    background-color: darkgray;
+    height: 5rem;
+    width: 90%;
+    display: flex;
+    justify-content: right;
+    flex-direction: column;
+    text-align: right;
+    border: 1px solid black;
+}
+
+.display h4 {
+    margin: 10px;
+    font-size: 10px;
+}
+
+.display h3 {
+    margin: 10px;
+    font-size: 30px;
+}
+
+.btn-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    width: 80%;
+    justify-content: center;
+}

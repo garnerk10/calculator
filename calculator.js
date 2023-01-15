@@ -57,7 +57,9 @@ const selectOperator = button => {
         smDisplay.innerText = `${operand1} ${button.target.textContent}`;
     } else if(isOperatorSelected === true && lgDisplay !== ''){
         operand2 = lgDisplay.textContent;
-        lgDisplay.innerText = operate(operator, operand1, operand2);
+        smDisplay.innerText = `${operate(operator, operand1, operand2)} ${button.target.textContent}`;
+        operand1 = operate(operator, operand1, operand2);
+        lgDisplay.innerText = '';
         operator = button.target.textContent;
 
     }
