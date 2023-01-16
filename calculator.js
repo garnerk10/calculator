@@ -10,6 +10,7 @@ const numButtons = document.querySelectorAll("[data-number]");
 const opButtons = document.querySelectorAll("[data-operator]");
 const equalsButton = document.getElementById("equals");
 const decPoint = document.getElementById("point");
+const deleteBtn = document.getElementById("delete")
 
 const add = (num1, num2) => {
     return num1 + num2
@@ -66,6 +67,7 @@ const selectOperator = button => {
     }
 };
 
+//adding functions to number and operator buttons
 numButtons.forEach(button => {
     button.addEventListener('click', appendDigit)
 });
@@ -74,18 +76,26 @@ opButtons.forEach(button => {
     button.addEventListener('click', selectOperator)
 });
 
-
+//equals button and function
 const equalsFunction = () => {
     if(isOperatorSelected === true){
+        if(operator === "/" && operand2 === 0){
+            isOperatorSelected = false;
+            lgDisplay.innerText = `Can't do that!`;
+            operand1 = 0;
+            operand2 = 0;
+            operator = '';
+        } else {
         isOperatorSelected = false;
         operand2 = lgDisplay.textContent;
         smDisplay.innerText += ` ${operand2}`;
-        lgDisplay.innerText = `${operate(operator, operand1, operand2)}`
-    };
+        lgDisplay.innerText = `${operate(operator, operand1, operand2)}`}
+    }
 };
 
 equalsButton.addEventListener('click', equalsFunction);
 
+//clear button and function
 const clearFunction = () => {
     lgDisplay.innerText = '';
     smDisplay.innerText = '';
@@ -95,8 +105,10 @@ const clearFunction = () => {
     isOperatorSelected = false;
 };
 
+
 clear.addEventListener('click', clearFunction);
 
+//adding a decimal point and rounding to 3 decimal places
 const point = () => {
     lgDisplay.innerText += "."
 };
@@ -105,4 +117,11 @@ decPoint.addEventListener('click', point);
 
 const roundNumber = num => {
     return Math.round(num * 1000) / 1000;
-}
+};
+
+//delete button to remove last digit entered
+const remove = () => {
+    lgDisplay.innerText = lgDisplay.innerText.slice(0, -1)
+};
+
+deleteBtn.addEventListener("click", remove);
