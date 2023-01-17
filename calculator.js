@@ -125,3 +125,39 @@ const remove = () => {
 };
 
 deleteBtn.addEventListener("click", remove);
+
+//add keyboard input
+const keyInput = e => {
+    if(e.key >= 0 && e.key <= 9){
+        lgDisplay.innerText += e.key;
+    }
+    else if(e.key === "+" || e.key === "-" || e.key === "/" || e.key === "x"){
+        operator = e.key;
+        if(isOperatorSelected === false){
+            isOperatorSelected = true;
+            operand1 = lgDisplay.textContent;
+            operator = e.key;
+            lgDisplay.innerText = '';
+            smDisplay.innerText = `${operand1} ${e.key}`;
+        } else if(isOperatorSelected === true && lgDisplay !== ''){
+            operand2 = lgDisplay.textContent;
+            smDisplay.innerText = `${operate(operator, operand1, operand2)} ${e.key}`;
+            operand1 = operate(operator, operand1, operand2);
+            lgDisplay.innerText = '';
+            operator = e.key;
+        }
+
+    } else if(e.key === "=" || e.key === "Enter"){
+        equalsFunction();
+    } 
+    
+    else if(e.key === "Backspace"){
+        remove();
+    }
+
+    else if(e.key === "c"){
+        clearFunction();
+    }
+};
+
+window.addEventListener("keydown", keyInput);
