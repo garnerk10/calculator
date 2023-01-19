@@ -50,12 +50,14 @@ body {
     grid-template-columns: repeat(4, 25%);
     width: 80%;
     justify-content: center;
+    grid-gap: 2px;
 }
 
 button {
     height: 40px;
     font-family: 'Russo One', sans-serif;
     font-size: 18px;
+    border-radius: 5px;
 }
 
 button:hover {
